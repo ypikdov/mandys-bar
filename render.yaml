@@ -3,8 +3,8 @@ services:
     name: mandys-bar-backend
     env: node
     plan: free
-    buildCommand: npm install && npx prisma generate && npm run build
-    startCommand: npm run start
+    buildCommand: npm install --prefix backend && npx prisma generate --schema=backend/prisma/schema.prisma && npm run build --prefix backend
+    startCommand: npm run start --prefix backend
     envVars:
       - key: NODE_ENV
         value: production
