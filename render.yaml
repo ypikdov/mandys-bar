@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: mandys-bar-backend
+    name: mandys-bar-backend-ypikdov
     env: node
     plan: free
     buildCommand: npm install --prefix backend && npx prisma generate --schema=backend/prisma/schema.prisma && npm run build --prefix backend
