@@ -1,0 +1,246 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes wave {
+  30% { transform: translateY(4px); }
+  50% { transform: translateY(-3px); color: var(--primary); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-20px) rotate(-90deg); filter: blur(5px); }
+  30% { opacity: 1; transform: translateY(4px) rotate(0); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes disapear {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+}
+
+@keyframes takeOff {
+  0% { opacity: 1; }
+  60% { opacity: 1; transform: translateX(70px) rotate(45deg) scale(2); }
+  100% { opacity: 0; transform: translateX(160px) rotate(45deg) scale(0); }
+}
+
+@keyframes land {
+  0% { transform: translateX(-60px) translateY(30px) rotate(-50deg) scale(2); opacity: 0; filter: blur(3px); }
+  100% { transform: translateX(0) translateY(0) rotate(0); opacity: 1; filter: blur(0); }
+}
+
+@keyframes appear {
+  0% { opacity: 0; transform: scale(4) rotate(-40deg); color: var(--primary); filter: blur(4px); }
+  100% { opacity: 1; transform: scale(1); color: var(--primary); }
+}
+
+@keyframes contrail {
+  0% { width: 0; opacity: 1; }
+  8% { width: 15px; }
+  60% { opacity: 0.7; width: 80px; }
+  100% { opacity: 0; width: 160px; }
+}
+
+.styled-button-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.order-button {
+  --primary: #ea580c;
+  --neutral-1: #f7f8f8;
+  --neutral-2: #e7e7e7;
+  --radius: 14px;
+  cursor: pointer;
+  border-radius: var(--radius);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  border: none;
+  box-shadow: 0 0.5px 0.5px 1px rgba(255, 255, 255, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 5px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  min-width: 240px;
+  padding: 20px;
+  height: 68px;
+  font-family: inherit;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none;
+  color: black;
+  outline: none;
+}
+
+.order-button:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 0 1px 2px rgba(255, 255, 255, 0.3),
+    0 15px 30px rgba(0, 0, 0, 0.3), 0 10px 3px -3px rgba(0, 0, 0, 0.04);
+}
+
+.order-button:active:not(:disabled) {
+  transform: scale(1);
+}
+
+.order-button.is-animating,
+.order-button.sent {
+  box-shadow: 0 0 1px 2px rgba(255, 255, 255, 0.3),
+    0 10px 3px -3px rgba(0, 0, 0, 0.2);
+}
+
+.order-button:disabled:not(.is-animating):not(.sent) {
+  cursor: not-allowed;
+  opacity: 0.7;
+  filter: grayscale(0.5);
+}
+
+.order-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  border: 2.5px solid transparent;
+  background: linear-gradient(var(--neutral-1), var(--neutral-2)) padding-box,
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.45)) border-box;
+  z-index: 0;
+  transition: all 0.4s ease;
+}
+
+.order-button:hover:not(:disabled)::after {
+  transform: scale(1.05, 1.1);
+  box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, 1);
+}
+
+.order-button::before {
+  content: "";
+  inset: 7px 6px 6px 6px;
+  position: absolute;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.15), transparent);
+  border-radius: 30px;
+  filter: blur(0.5px);
+  z-index: 2;
+}
+
+.button-state {
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.button-state p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding-left: 30px;
+}
+
+.button-state .button-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(1.25);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-state .button-icon svg {
+  overflow: visible;
+}
+
+.button-shadow-filter {
+  filter: url(#button-shadow);
+}
+
+/* Outline Animation */
+.button-outline {
+  position: absolute;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  inset: -2px -3.5px;
+}
+
+.button-outline::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(from 180deg, transparent 60%, var(--primary) 80%, transparent 100%);
+  animation: spin 2s linear infinite;
+  animation-play-state: paused;
+}
+
+.order-button:hover:not(:disabled) .button-outline { opacity: 1; }
+.order-button:hover:not(:disabled) .button-outline::before { animation-play-state: running; }
+
+/* Text Animations */
+.button-state p span {
+  display: block;
+  opacity: 0;
+  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
+}
+
+.order-button:hover:not(:disabled) p span {
+  opacity: 1;
+  animation: wave 0.5s ease forwards calc(var(--i) * 0.02s);
+}
+
+.order-button.is-animating .state--default p span,
+.order-button.sent .state--default p span {
+  opacity: 1;
+  animation: disapear 0.6s ease forwards calc(var(--i) * 0.03s);
+}
+
+/* Plane Animations */
+.state--default .button-icon svg { animation: land 0.6s ease forwards; }
+.order-button:hover:not(:disabled) .state--default .button-icon { transform: translateY(-50%) rotate(45deg) scale(1.25); }
+.order-button.is-animating .state--default svg,
+.order-button.sent .state--default svg { animation: takeOff 0.8s linear forwards; }
+
+/* Sent State display */
+.state--sent { display: none; }
+.order-button.is-animating .state--default,
+.order-button.sent .state--default { position: absolute; }
+.order-button.is-animating .state--sent,
+.order-button.sent .state--sent { display: flex; }
+
+.order-button.is-animating .state--sent .button-icon svg,
+.order-button.sent .state--sent .button-icon svg {
+  opacity: 0;
+  animation: appear 1.2s ease forwards 0.8s;
+}
+
+.order-button.is-animating .state--sent p span,
+.order-button.sent .state--sent p span {
+  opacity: 0;
+  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.05s + 0.8s);
+}
+
+/* Plane contrail in flight */
+.state--default .button-icon:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  width: 0;
+  left: -5px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5));
+}
+
+.order-button.is-animating .state--default .button-icon:before,
+.order-button.sent .state--default .button-icon:before {
+  animation: contrail 0.8s linear forwards;
+}

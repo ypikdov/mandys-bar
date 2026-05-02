@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 40% 98%; /* Cream: #fdfbf7 */
+    --foreground: 0 0% 0%; /* Black: #000 */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 24 81% 60%; /* Orange: #ea580c */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 149 100% 24%; /* Green: #007c3d */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 40 40% 90%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 40 40% 90%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 24 81% 60%; /* Orange */
+    --radius: 0.5rem;
+  }
+
+  /* Dark mode not explicitly requested for the whole app, but for specific panels. 
+     Keeping a standard dark mode just in case, heavily leaning on black */
+  .dark {
+    --background: 0 0% 0%; /* Black: #000 */
+    --foreground: 40 40% 98%; /* Cream: #fdfbf7 */
+    --card: 0 0% 5%;
+    --card-foreground: 40 40% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 40 40% 98%;
+    --primary: 24 81% 60%; /* Orange: #ea580c */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 149 100% 24%; /* Green: #007c3d */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 40 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 24 81% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .admin-product-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+  }
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /perfil/
+
+Sitemap: https://mandysbar.com/sitemap.xml

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "prisma-orm-v7-skills": {
+      "source": "gocallum/nextjs16-agent-skills",
+      "sourceType": "github",
+      "computedHash": "371d23a97d15be1fdd5ae350b4b2a151045e8fabf83aed0b2d716e747f7ea6d2"
+    },
+    "supabase-postgres-best-practices": {
+      "source": "supabase/agent-skills",
+      "sourceType": "github",
+      "computedHash": "e3ba3d760c5f4cc43b02a91fb8924f726c7818f95cc35d79d0a606ca622b72f5"
+    }
+  }
+}

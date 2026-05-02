@@ -1,0 +1,3 @@
+src/App.tsx(3,28): error TS2307: Cannot find module '@/components/auth/AdminRoute' or its corresponding type declarations.
+src/App.tsx(4,30): error TS2307: Cannot find module '@/contexts/AuthContext' or its corresponding type declarations.
+src/lib/lib/pdfEvent.ts(2,33): error TS2307: Cannot find module '../data/events' or its corresponding type declarations.

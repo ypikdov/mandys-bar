@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: mandys-bar-backend
+    env: node
+    plan: free
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false # El usuario debe poner su URL de Supabase en el panel de Render
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://main.mandys-bar-client.pages.dev,https://mandys-bar-admin.pages.dev
+      - key: FRONTEND_URL
+        value: https://main.mandys-bar-client.pages.dev
+      - key: ADMIN_URL
+        value: https://mandys-bar-admin.pages.dev
+      - key: SUPABASE_URL
+        value: https://oelkfmiimwylqkecvhiz.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: sb_publishable_Luea6ra6QUhFpymk1s9qXA_uvHs8Cfz

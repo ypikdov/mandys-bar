@@ -1,0 +1,4 @@
+# Ejemplo de Archivo de Activo
+
+Este marcador representa dónde se guardarían los archivos de activos.
+Los activos NO se cargan en el contexto, se usan en la salida (plantillas, imágenes, fuentes).

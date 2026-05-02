@@ -1,0 +1,196 @@
+- generic [ref=e5]:
+  - navigation [ref=e6]:
+    - generic [ref=e7]:
+      - link "Mandy's Bar MANDY'S Bar & Restaurante" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - img "Mandy's Bar" [ref=e9]
+        - generic [ref=e10]:
+          - generic [ref=e11]: MANDY'S
+          - generic [ref=e12]: Bar & Restaurante
+      - generic [ref=e13]:
+        - link "MENÚ" [ref=e15] [cursor=pointer]:
+          - /url: /menu
+          - text: MENÚ
+        - generic [ref=e18]:
+          - link "ACERCA DE" [ref=e19] [cursor=pointer]:
+            - /url: /acerca
+          - button "Menú de ACERCA DE" [ref=e20] [cursor=pointer]:
+            - img [ref=e21]
+        - link "CONTACTO" [ref=e24] [cursor=pointer]:
+          - /url: /contacto
+        - generic [ref=e26]:
+          - link "EVENTOS" [ref=e27] [cursor=pointer]:
+            - /url: /eventos
+          - button "Menú de EVENTOS" [ref=e28] [cursor=pointer]:
+            - img [ref=e29]
+        - link "GALERÍA" [ref=e32] [cursor=pointer]:
+          - /url: /galeria
+      - generic [ref=e33]:
+        - button "Favoritos" [ref=e34] [cursor=pointer]:
+          - img [ref=e35]
+        - button "Mi Cuenta" [ref=e37] [cursor=pointer]:
+          - img [ref=e38]
+        - link "PIDE AHORA" [ref=e41] [cursor=pointer]:
+          - /url: /menu
+        - button "Carrito de compras, 1 artículos" [ref=e249] [cursor=pointer]:
+          - img [ref=e43]
+          - generic [ref=e250]: "1"
+  - main [ref=e47]:
+    - generic [ref=e49]:
+      - heading "Nuestro Menú" [level=1] [ref=e50]
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - textbox "Buscar platillo..." [ref=e53]
+          - img [ref=e54]
+        - button "Catálogo" [ref=e58] [cursor=pointer]:
+          - img
+          - text: Catálogo
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]: "Ver:"
+          - generic [ref=e62]:
+            - combobox [ref=e63] [cursor=pointer]:
+              - option "Todas las categorías" [selected]
+              - option "Antojitos"
+              - option "Carnes"
+              - option "Casados"
+              - option "Cervezas"
+              - option "Cocteles"
+              - option "Mariscos"
+              - option "Pastas"
+            - img
+        - generic [ref=e64]:
+          - generic [ref=e65]: "Ordenar por:"
+          - generic [ref=e66]:
+            - combobox [ref=e67] [cursor=pointer]:
+              - option "Destacados" [selected]
+              - option "Alfabéticamente (A-Z)"
+              - option "Alfabéticamente (Z-A)"
+              - 'option "Precio: bajo a alto"'
+              - 'option "Precio: alto a bajo"'
+              - 'option "Fecha: antiguo a nuevo"'
+              - 'option "Fecha: nuevo a antiguo"'
+            - img
+      - generic [ref=e69]:
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - img "NACHOS DE CARNE" [ref=e74]
+            - button "Agregar NACHOS DE CARNE a favoritos" [ref=e75] [cursor=pointer]:
+              - img [ref=e76]
+            - generic [ref=e251]: 1 en pedido
+          - generic [ref=e79]:
+            - heading "NACHOS DE CARNE" [level=3] [ref=e80]
+            - generic [ref=e81]: ₡4 800
+          - button "Ver detalles e ingredientes" [ref=e83] [cursor=pointer]
+          - generic [ref=e252]:
+            - button [ref=e253] [cursor=pointer]:
+              - img
+            - generic [ref=e254]: "1"
+            - button [ref=e255] [cursor=pointer]:
+              - img
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - img "CANASTA DE PATACONES" [ref=e90]
+            - button "Agregar CANASTA DE PATACONES a favoritos" [ref=e91] [cursor=pointer]:
+              - img [ref=e92]
+          - generic [ref=e95]:
+            - heading "CANASTA DE PATACONES" [level=3] [ref=e96]
+            - generic [ref=e97]: ₡3 800
+          - button "Ver detalles e ingredientes" [ref=e99] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e101] [cursor=pointer]
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - img "CHIFRIJO MIXTO" [ref=e106]
+            - button "Agregar CHIFRIJO MIXTO a favoritos" [ref=e107] [cursor=pointer]:
+              - img [ref=e108]
+          - generic [ref=e111]:
+            - heading "CHIFRIJO MIXTO" [level=3] [ref=e112]
+            - generic [ref=e113]: ₡3 800
+          - button "Ver detalles e ingredientes" [ref=e115] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e117] [cursor=pointer]
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - img "FRITANGA" [ref=e122]
+            - button "Agregar FRITANGA a favoritos" [ref=e123] [cursor=pointer]:
+              - img [ref=e124]
+          - generic [ref=e127]:
+            - heading "FRITANGA" [level=3] [ref=e128]
+            - generic [ref=e129]: ₡6 500
+          - button "Ver detalles e ingredientes" [ref=e131] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e133] [cursor=pointer]
+        - generic [ref=e135]:
+          - generic [ref=e136]:
+            - img "PATACONES ARREGLADOS" [ref=e138]
+            - button "Agregar PATACONES ARREGLADOS a favoritos" [ref=e139] [cursor=pointer]:
+              - img [ref=e140]
+          - generic [ref=e143]:
+            - heading "PATACONES ARREGLADOS" [level=3] [ref=e144]
+            - generic [ref=e145]: ₡4 200
+          - button "Ver detalles e ingredientes" [ref=e147] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e149] [cursor=pointer]
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - img "SURTIDA MANDY'S" [ref=e154]
+            - button "Agregar SURTIDA MANDY'S a favoritos" [ref=e155] [cursor=pointer]:
+              - img [ref=e156]
+          - generic [ref=e159]:
+            - heading "SURTIDA MANDY'S" [level=3] [ref=e160]
+            - generic [ref=e161]: ₡12 000
+          - button "Ver detalles e ingredientes" [ref=e163] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e165] [cursor=pointer]
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - img "TORTILLA ALINADA" [ref=e170]
+            - button "Agregar TORTILLA ALINADA a favoritos" [ref=e171] [cursor=pointer]:
+              - img [ref=e172]
+          - generic [ref=e175]:
+            - heading "TORTILLA ALINADA" [level=3] [ref=e176]
+            - generic [ref=e177]: ₡2 500
+          - button "Ver detalles e ingredientes" [ref=e179] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e181] [cursor=pointer]
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - img "TACOS DE ARRACHERA" [ref=e186]
+            - button "Agregar TACOS DE ARRACHERA a favoritos" [ref=e187] [cursor=pointer]:
+              - img [ref=e188]
+          - generic [ref=e191]:
+            - heading "TACOS DE ARRACHERA" [level=3] [ref=e192]
+            - generic [ref=e193]: ₡7 500
+          - button "Ver detalles e ingredientes" [ref=e195] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e197] [cursor=pointer]
+        - generic [ref=e199]:
+          - generic [ref=e200]:
+            - img "OLLA DE CARNE" [ref=e202]
+            - button "Agregar OLLA DE CARNE a favoritos" [ref=e203] [cursor=pointer]:
+              - img [ref=e204]
+          - generic [ref=e207]:
+            - heading "OLLA DE CARNE" [level=3] [ref=e208]
+            - generic [ref=e209]: ₡5 500
+          - button "Ver detalles e ingredientes" [ref=e211] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e213] [cursor=pointer]
+        - generic [ref=e215]:
+          - generic [ref=e216]:
+            - img "MANGOCHELADA" [ref=e218]
+            - button "Agregar MANGOCHELADA a favoritos" [ref=e219] [cursor=pointer]:
+              - img [ref=e220]
+          - generic [ref=e223]:
+            - heading "MANGOCHELADA" [level=3] [ref=e224]
+            - generic [ref=e225]: ₡3 500
+          - button "Ver detalles e ingredientes" [ref=e227] [cursor=pointer]
+          - button "Agregar al pedido" [ref=e229] [cursor=pointer]
+      - navigation "Paginacion del menu" [ref=e230]:
+        - button "Pagina anterior" [disabled] [ref=e231]:
+          - img [ref=e232]
+        - button "1" [ref=e235] [cursor=pointer]
+        - button "2" [ref=e237] [cursor=pointer]
+        - button "3" [ref=e239] [cursor=pointer]
+        - button "Pagina siguiente" [ref=e240] [cursor=pointer]:
+          - img [ref=e241]
+  - contentinfo [ref=e243]:
+    - generic [ref=e244]:
+      - paragraph [ref=e245]: © 2026 Mandy's Bar & Restaurante. Todos los derechos reservados.
+      - generic [ref=e246]:
+        - link "Política de Privacidad" [ref=e247] [cursor=pointer]:
+          - /url: "#"
+        - link "Términos de Servicio" [ref=e248] [cursor=pointer]:
+          - /url: "#"

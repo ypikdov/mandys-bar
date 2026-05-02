@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/admin/tsconfig.app.json" },
+    { "path": "./apps/admin/tsconfig.node.json" },
+    { "path": "./apps/client/tsconfig.app.json" },
+    { "path": "./apps/client/tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@mandys/ui": ["./packages/ui/index.ts"],
+      "@mandys/shared": ["./packages/shared/index.ts"]
+    }
+  }
+}

@@ -1,0 +1,111 @@
+.styled-button-wrapper {
+  width: 100%;
+}
+
+.order-button {
+  width: 100%;
+  min-height: 76px;
+  border: 1px solid rgba(234, 88, 12, 0.14);
+  border-radius: 22px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 58%, #fff4e6 100%);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  color: #09090b;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+
+.order-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(234, 88, 12, 0.28);
+  box-shadow: 0 22px 36px rgba(15, 23, 42, 0.12);
+}
+
+.order-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.order-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.76;
+}
+
+.order-button.sent {
+  border-color: rgba(22, 163, 74, 0.2);
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 55%, #f0fdf4 100%);
+}
+
+.order-button__accent {
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.order-button.sent .order-button__accent {
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+}
+
+.order-button__icon {
+  height: 18px;
+  width: 18px;
+}
+
+.order-button__icon--spin {
+  animation: order-button-spin 0.9s linear infinite;
+}
+
+.order-button__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.order-button__label {
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.order-button__hint {
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #71717a;
+}
+
+.order-button__trailing {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+}
+
+.order-button.sent .order-button__trailing {
+  color: #16a34a;
+}
+
+.order-button__trailing-icon {
+  height: 18px;
+  width: 18px;
+}
+
+@keyframes order-button-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

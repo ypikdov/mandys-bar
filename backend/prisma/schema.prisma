@@ -1,0 +1,297 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id             String     @id @default(uuid())
+  nombre         String
+  correo         String     @unique
+  telefono       String?
+  password_hash  String
+  role           Role       @default(USER)
+  puesto         String?    // Cajero, Mesero, etc. Solo para personal
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+  canton         String?
+  distrito       String?
+  fecha_nac      DateTime?
+  genero         String?
+  num_documento  String?
+  provincia      String?
+  tipo_documento String?
+  foto_perfil    String?
+  audit_logs     AuditLog[]
+  orders         Order[]
+
+  @@index([role])
+  @@map("users")
+}
+
+model Product {
+  id             String      @id @default(uuid())
+  nombre         String
+  descripcion    String?
+  precio_con_iva Float
+  categoria      String
+  imagen_url     String?
+  destacado      Boolean     @default(false)
+  activo         Boolean     @default(true)
+  created_at     DateTime    @default(now())
+  updated_at     DateTime    @updatedAt
+  order_items    OrderItem[]
+
+  @@index([categoria])
+  @@index([activo])
+  @@map("products")
+}
+
+model SiteSetting {
+  id         String   @id @default(uuid())
+  key        String   @unique
+  section    String
+  label      String?
+  value      Json
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@index([section])
+  @@map("site_settings")
+}
+
+model SiteEvent {
+  id           String        @id @default(uuid())
+  slug         String
+  kind         SiteEventKind
+  title        String
+  subtitle     String?
+  description  String?
+  day_label    String?
+  display_date String?
+  start_time   String?
+  image_url    String?
+  price        Float?
+  order_index  Int           @default(0)
+  active       Boolean       @default(true)
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @updatedAt
+
+  @@unique([kind, slug])
+  @@index([kind, active, order_index])
+  @@map("site_events")
+}
+
+model GalleryItem {
+  id              String   @id @default(uuid())
+  title           String
+  alt_text        String
+  category        String
+  image_url       String
+  rotation        Int?
+  aspect          String?
+  object_position String?
+  order_index     Int      @default(0)
+  active          Boolean  @default(true)
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  @@index([active, order_index])
+  @@map("gallery_items")
+}
+
+model Order {
+  id                 String          @id @default(uuid())
+  consecutivo_anual  String          @unique
+  user_id            String?
+  subtotal_sin_iva   Float
+  iva                Float
+  total              Float
+  fecha              DateTime        @default(now())
+  deleted_at         DateTime?
+  estado             OrderStatus     @default(PENDIENTE)
+  motivo_eliminacion String?
+  pickup_time        DateTime?
+  cliente_nombre     String?
+  cliente_telefono   String?
+  notas              String?
+  accounting_logs    AccountingLog[]
+  items              OrderItem[]
+  user               User?           @relation(fields: [user_id], references: [id])
+  shadow_sale        ShadowSale?
+
+  @@index([user_id])
+  @@index([fecha])
+  @@map("orders")
+}
+
+model OrderItem {
+  id             String  @id @default(uuid())
+  order_id       String
+  product_id     String
+  cantidad       Int
+  precio_sin_iva Float
+  iva_linea      Float
+  total_linea    Float
+  order          Order   @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  product        Product @relation(fields: [product_id], references: [id])
+
+  @@index([order_id])
+  @@index([product_id])
+  @@map("order_items")
+}
+
+model AuditLog {
+  id                   String   @id @default(uuid())
+  usuario_que_modifica String
+  accion               String
+  entidad              String?
+  entidad_id           String?
+  datos_anteriores     Json?
+  datos_nuevos         Json?
+  ip                   String?
+  user_agent           String?
+  fecha                DateTime @default(now())
+  user                 User     @relation(fields: [usuario_que_modifica], references: [id])
+
+  @@index([usuario_que_modifica])
+  @@index([entidad, entidad_id])
+  @@index([fecha])
+  @@map("audit_logs")
+}
+
+model AccountingLog {
+  id         String   @id @default(uuid())
+  order_id   String
+  action     String
+  total      Float
+  details    String?
+  created_at DateTime @default(now())
+  order      Order    @relation(fields: [order_id], references: [id])
+
+  @@index([order_id])
+  @@index([created_at])
+  @@map("accounting_logs")
+}
+
+model WebhookEvent {
+  id           String   @id @default(uuid())
+  event_id     String   @unique
+  provider     String
+  payload      Json?    @default("{}")
+  status       String
+  error_reason String?
+  created_at   DateTime @default(now())
+
+  @@index([event_id])
+  @@map("webhook_events")
+}
+
+model ShadowSale {
+  id                String   @id @default(uuid())
+  order_id          String   @unique
+  total_consolidado Float
+  items_json        String
+  fecha_venta       DateTime @default(now())
+  cliente_correo    String?
+  cliente_nombre    String?
+  cliente_telefono  String?
+  order             Order    @relation(fields: [order_id], references: [id])
+
+  @@index([fecha_venta])
+  @@map("shadow_sales")
+}
+
+model ShadowDailyRevenue {
+  id          String   @id @default(uuid())
+  fecha_dia   DateTime @unique
+  total_venta Float
+  updated_at  DateTime @updatedAt
+
+  @@index([fecha_dia])
+  @@map("shadow_daily_revenue")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
+  VENTAS
+}
+
+enum OrderStatus {
+  PENDIENTE
+  COMPLETADO
+  CANCELADO
+  ERROR
+  PENDIENTE_VERIFICACION
+  PAGADO
+  EN_PREPARACION
+}
+
+model Reservation {
+  id                  String          @id @default(uuid())
+  nombre              String
+  correo              String
+  fecha               DateTime
+  hora_inicio         String
+  hora_fin            String
+  tipo_evento         String
+  comensales          Int
+  detalles            String?
+  estado              ReservaStatus   @default(PENDIENTE)
+  consecutivo_reserva Int             @unique @default(autoincrement())
+  // Datos de pago (se llenan al confirmar)
+  codigo_referencia    String?
+  monto_deposito       Float?
+  medio_pago           String?        // SINPE_MOVIL | TRANSFERENCIA
+  tipo_pago            String?        // CONTADO | CREDITO
+  observacion_pago     String?
+  confirmado_por       String?        // Nombre de quien confirma
+  confirmado_por_rol   String?        // ADMIN | VENTAS | MANAGER
+  fecha_confirmacion   DateTime?
+  // Datos de anulación (se llenan al anular)
+  motivo_anulacion     String?
+  imagen_anulacion     String?        // Ruta a imagen adjunta (max 5MB)
+  anulado_por          String?        // Nombre de quien anula
+  anulado_por_rol      String?        // ADMIN | VENTAS | MANAGER
+  fecha_anulacion      DateTime?
+  created_at          DateTime        @default(now())
+  updated_at          DateTime        @updatedAt
+
+  @@index([correo])
+  @@map("reservations")
+}
+
+enum ReservaStatus {
+  PENDIENTE
+  CONFIRMADA
+  CANCELADA
+}
+
+enum SiteEventKind {
+  PUBLIC_PROGRAM
+  PRIVATE_TEMPLATE
+}
+
+model ContentRevision {
+  id             String      @id @default(uuid())
+  created_at     DateTime    @default(now())
+  author         String
+  section        String      @default("GLOBAL")
+  valor_anterior Json
+  valor_nuevo    Json
+  estado         DraftStatus @default(PENDING)
+
+  @@index([estado, created_at])
+  @@map("content_revisions")
+}
+
+enum DraftStatus {
+  PENDING
+  PUBLISHED
+  REJECTED
+}
